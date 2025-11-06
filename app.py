@@ -1,4 +1,5 @@
 from flask import Flask
+
 app = Flask(__name__)
 
 # definir una ruta
@@ -14,6 +15,12 @@ def contacto():
 @app.route('/saludo')
 def saludo():
     return 'Hola!'
+@app.route('/usuario/<nombre>')
+def mostrar_usuario(nombre):
+    return f'Perfil de usuario: {nombre}'
+@app.route('/post/<int:post_id>')
+def mostrar_post(post_id):
+    return f'Mostrando el post número: {post_id}'
 
 # ejecutar la aplicacion
 if __name__=='__main__':
