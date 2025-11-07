@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block titulo %}Mi Blog{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1> Mi Blog Personal</h1>
+            <nav>
+                <a href="{{ url_for('index') }}">Inicio</a>
+                <a href="{{ url_for('nuevo_post') }}">Nuevo Post</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        {% block contenido %}
+        {% endblock %}
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>© 2025 Mi Blog con Flask | Creado para aprender</p>
+        </div>
+    </footer>
+</body>
+</html>

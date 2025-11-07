@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block titulo %}{{ post.titulo }} - Mi blog{% endblock %}
+
+{% block contenido %}
+    <article class = "post-full">
+        <h2>{{ post.titulo }}</h2>
+
+        <div class = "post-meta">
+            <span>por {{ post.autor }}</span>
+            <span>{{ post.fecha.strftime('%d de %B de %Y') }}</span>
+        </div>
+
+        <div class = "post-content">
+            {{ post.contenido }}
+        </div>
+
+        <div class = "post-actions">
+            <a href= "{{ url_for('index') }}" class = "btn btn-secondary">
+                   ← volver al inicio
+            </a>
+            <a href= "{{ url_for('eliminar_post', post_id=post.id) }}"
+               class = "btn btn-danger"
+               oneclick = " return confirm ('¿estas seguro de eliminar este post?')">
+                eliminar post
+            </a>
+        </div>
+    </article>
+{% endblock %}

@@ -1,2 +1,42 @@
-<title> hola mundo</title>
-<head> hola</head>
+{% extends "base.html" %}
+
+{% block titulo %}Inicio - Mi Blog{% endblock %}
+
+{% block contenido %}
+    <div class = "hero">
+        <h2> Bienvenido a mi blog</h2>
+        <p>aqui comparto mis experiencias aprendidendo programacion</p>
+    </div>
+
+    <div class = "posts-grid">
+        {% if posts %}
+            {% for post in posts %}
+                <article class = "post-card">
+                    <h3>{{ post.titulo }}</h3>
+                    <div class = "post-meta">
+                        <span> {{ post.autor }}</span>
+                        <span> {{ post.fecha.strftime('%d/%m/%Y') }}</span>
+                    </div>
+                    <p class = "post-preview">
+                        {{ post.contenido[:150] }}{% if post.contenido|length > 150 %}...
+{% endif %}
+                    </p>
+                    <div class = "post-actions">
+                        <a href="{{ url_for('ver_post', post_id=post.id)}}" class = "btn
+btn-primary">
+                            leer más
+                        </a>
+                        <a href="{{ url_for('eliminar_post', post_id=post.id) }}"
+                           class= "btn btn-danger"
+                           oneclick = "return confirm('¿estas seguro de eliminar este post?')">
+
+                            eliminar
+                         </a>
+                    </div>
+                </article>
+            {% endfor %}
+        {% else %}
+             <p class = "no-posts">No hay posts todavia. ¡crea el primero!</p>
+        {% endif %}
+    </div>
+{% endblock %}
